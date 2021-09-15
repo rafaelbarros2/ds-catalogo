@@ -21,4 +21,15 @@ public class ResourceExcptionHandler {
             err.setPath(request.getRequestURI());
             return ResponseEntity.status(HttpStatus.NOT_FOUND.value()).body(err);
     }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity<StandardError> entityNotFound(Validation e, HttpServletRequest request){
+        StandardError err = new StandardError();
+        err.setTimestamp(Instant.now());
+        err.setStatus(HttpStatus.NOT_FOUND.value());
+        err.setError("Resource Not Found");
+        err.setMessage(e.getMessage());
+        err.setPath(request.getRequestURI());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST.value()).body(err);
+    }
 }
