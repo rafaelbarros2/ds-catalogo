@@ -2,9 +2,12 @@ package com.rafaelb.dscatalog.services;
 
 import com.rafaelb.dscatalog.dtos.CategoryDTO;
 import com.rafaelb.dscatalog.entities.Category;
+import com.rafaelb.dscatalog.exceptions.DataBaseExcptions;
 import com.rafaelb.dscatalog.exceptions.ResourceNotFoundExcptions;
 import com.rafaelb.dscatalog.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -51,9 +54,20 @@ public class CategoyService {
             category = repository.save(category);
             return new CategoryDTO(category);
         }catch (EntityNotFoundException e){
-            throw new ResourceNotFoundExcptions("Id inexistente" + id);
+            throw new ResourceNotFoundExcptions("Id inexistente: " + id);
         }
 
     }
 
+
+    public void delete(Long id) {
+
+        try {
+            repository.deleteById(id);
+        }catch (EmptyResultDataAccessException e){
+            throw new ResourceNotFoundExcptions("Id inexistente:" + id);
+        }catch (DataIntegrityViolationException e){
+            throw new DataBaseExcptions("Violação de integridade");
+        }
+    }
 }
