@@ -1,6 +1,5 @@
 package com.rafaelb.dscatalog.dtos;
 
-import com.rafaelb.dscatalog.entities.Category;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,8 +18,4 @@ public class CategoryDTO implements Serializable {
     @NotBlank(message = "Preencha o campo name.")
     private String name;
 
-    public CategoryDTO(Category category) {
-       id = category.getId();
-       name = category.getName();
-    }
 }
