@@ -1,5 +1,6 @@
 package com.rafaelb.dscatalog.dtos;
 
+import com.rafaelb.dscatalog.entities.Category;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

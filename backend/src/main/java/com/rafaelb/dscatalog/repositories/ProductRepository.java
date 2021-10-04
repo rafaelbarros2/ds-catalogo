@@ -1,10 +1,10 @@
 package com.rafaelb.dscatalog.repositories;
 
-import com.rafaelb.dscatalog.entities.Category;
+import com.rafaelb.dscatalog.entities.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CategoryRepository extends JpaRepository<Category, Long > {
+public interface ProductRepository extends JpaRepository<Product, Long > {
 
 }

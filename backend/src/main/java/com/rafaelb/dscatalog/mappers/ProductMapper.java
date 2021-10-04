@@ -1,14 +1,19 @@
 package com.rafaelb.dscatalog.mappers;
 
-import com.rafaelb.dscatalog.dtos.CategoryDTO;
-import com.rafaelb.dscatalog.entities.Category;
+import com.rafaelb.dscatalog.dtos.ProductDTO;
+import com.rafaelb.dscatalog.dtos.ProductListDTO;
+import com.rafaelb.dscatalog.entities.Product;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel="spring")
-public interface CategoryMapper {
+public interface ProductMapper {
 
-    CategoryDTO toDto(Category entity);
+    ProductDTO productToDto(Product entity);
 
-    Category toCategory(CategoryDTO categoryDTO);
+    ProductListDTO productListToProduct(Product product);
+
+    Product productToProductListDTO(ProductListDTO productListDTO);
+
+    Product toProduct(ProductDTO productDTO);
 
 }
