@@ -59,8 +59,7 @@ public class ProductResourceTests {
         when(service.update(eq(existId), any())).thenReturn(productDTO);
         when(service.update(eq(nonExistId), any())).thenThrow(ResourceNotFoundException.class);
 
-        doNothing().when(service).delete(1L);
-//        doNothing().when(service).delete(existId);
+        doNothing().when(service).delete(existId);
         doThrow(ResourceNotFoundException.class).when(service).delete(nonExistId);
         doThrow(DatabaseException.class).when(service).delete(dependentId);
 
