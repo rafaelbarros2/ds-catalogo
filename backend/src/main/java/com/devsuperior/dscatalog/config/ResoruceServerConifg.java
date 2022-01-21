@@ -28,9 +28,6 @@ public class ResoruceServerConifg extends ResourceServerConfigurerAdapter {
 
     private static final String[] ADMIN = {"/users/**"};
 
-
-    @Autowired
-
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
         resources.tokenStore(tokenStore);
