@@ -1,7 +1,8 @@
 package com.devsuperior.dscatalog.resources;
 
-
 import java.net.URI;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,22 +22,20 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.devsuperior.dscatalog.dto.ProductDTO;
 import com.devsuperior.dscatalog.services.ProductService;
 
-import javax.validation.Valid;
-
 @RestController
 @RequestMapping(value = "/products")
 public class ProductResource {
 
 	@Autowired
 	private ProductService service;
-	
+
 	@GetMapping
 	public ResponseEntity<Page<ProductDTO>> findAll(
 			@RequestParam(value = "categoryId", defaultValue = "0") Long categoryId,
 			@RequestParam(value = "name", defaultValue = "") String name,
 			Pageable pageable) {
-		// parametros page, size, sort
-		Page<ProductDTO> list = service.findAllPaged(categoryId,pageable, name.trim());
+
+		Page<ProductDTO> list = service.findAllPaged(categoryId, name.trim(), pageable);
 		return ResponseEntity.ok().body(list);
 	}
 
@@ -45,7 +44,7 @@ public class ProductResource {
 		ProductDTO dto = service.findById(id);
 		return ResponseEntity.ok().body(dto);
 	}
-	
+
 	@PostMapping
 	public ResponseEntity<ProductDTO> insert(@Valid @RequestBody ProductDTO dto) {
 		dto = service.insert(dto);
