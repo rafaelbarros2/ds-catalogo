@@ -9,8 +9,10 @@ const Home = () => {
     <div className="home-container"> 
         <div className="home-card">
             <div className="home-content-container">
+              <div>
                 <h1>Conheça o melhor catálago de produtos</h1>
                 <p>Ajudaremos você a encontrar os melhores produtos disponiveis do mercado</p>
+                </div>
                 <ButtonIcon/>
             </div>
             <div className="home-image-container">
